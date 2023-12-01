@@ -30,25 +30,27 @@ html
           $.ajax({url: '/ext/summary', success: function(json){
             var supplyString = json.data[0].supply;
             var diffString = json.data[0].difficulty;
-            var hashrateString = json.data[0].hashrate;
+            var hashrateString = json.data[0].hashrate; supplyString='17665831.0001323';
             if (!isNaN(json.data[0].difficulty)) {
-              diffString = parseFloat(json.data[0].difficulty).toFixed(2);
+              //diffString = parseFloat(json.data[0].difficulty).toFixed(2);
             }
             if (!isNaN(json.data[0].supply)) {
-              supplyString = parseInt(parseFloat(json.data[0].supply).toFixed(0)).toLocaleString('en');
+              //supplyString = parseInt(parseFloat(json.data[0].supply).toFixed(0)).toLocaleString('en');
             }
             if (!isNaN(json.data[0].hashrate)) {
-              hashrateString = parseFloat(json.data[0].hashrate).toLocaleString('en');
+              //hashrateString = parseFloat(json.data[0].hashrate).toLocaleString('en');
             }
+            
             $("#supply").text(supplyString);
+            $("#lastPrice").text(json.data[0].lastPrice); 
+
             $("#difficulty").text(diffString);
             $("#difficultyHybrid").text(json.data[0].difficultyHybrid);
-            $("#hashrate").text(hashrateString);
-            $("#lastPrice").text(parseFloat(json.data[0].lastPrice).toFixed(8) + ' #{settings.markets.exchange}'.toUpperCase());
+            $("#hashrate").text(hashrateString);             $("#lastPrice").text(parseFloat(json.data[0].lastPrice).toFixed(8) + ' #{settings.markets.exchange}'.toUpperCase());
             $("#marketCap").text((parseFloat(json.data[0].lastPrice).toFixed(8) * parseInt(parseFloat(json.data[0].supply).toFixed(0))).toLocaleString('en') + ' #{settings.markets.exchange}'.toUpperCase());
             $("#lblConnections").text(json.data[0].connections + ' connections');
             $("#lblBlockcount").text(json.data[0].blockcount + ' blocks');
-            $("#lblX1").text(' ');
+            $("#lblX1").text(' '); 
           }});
         }
         $('.block-last-next').tooltip({
